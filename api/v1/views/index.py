@@ -10,6 +10,7 @@ from models import storage
 def status():
     return jsonify(status="OK")
 
+
 @app_views.route('/stats')
 def stats():
     """etrieves the number of each objects by type"""
