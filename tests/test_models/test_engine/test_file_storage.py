@@ -116,7 +116,7 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_get(self):
-        """Test that get properly returns requested object"""
+        """Test that properly returns requested object"""
         storage = FileStorage()
         user = User(name="User1")
         user.save()
