@@ -18,7 +18,6 @@ classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
 
 class FileStorage:
     """serializes instances to a JSON file & deserializes back to instances"""
-
     # string - path to the JSON file
     __file_path = "file.json"
     # dictionary - empty but will store all objects by <class name>.id
@@ -55,7 +54,7 @@ class FileStorage:
                 jo = json.load(f)
             for key in jo:
                 self.__objects[key] = classes[jo[key]["__class__"]](**jo[key])
-        except:
+        except Exception:
             pass
 
     def delete(self, obj=None):
@@ -70,24 +69,20 @@ class FileStorage:
         self.reload()
 
     def get(self, cls, id):
-        """
-        Returns the object based on the class name and ID, or None if is not
-        found
-        """
-        key = "{}.{}".format(cls, id)
+        """return object based on class name and ID, or None if not found"""
+        key = "{}.{}".format(cls.__name__, id)
         if key in self.__objects.keys():
             return self.__objects[key]
         return None
 
     def count(self, cls=None):
-        """
-        Returns the number of objects in storage matching the given class name.
-        If no name is passed, returns the count of objects in storage.
+        """return number of objects in storage matching class name, or total
+        count of objects in storage if no class name passed
         """
         if cls:
             counter = 0
             for obj in self.__objects.values():
-                if obj.__class__.__name__ == cls:
+                if obj.__class__ == cls:
                     counter += 1
             return counter
         return len(self.__objects)

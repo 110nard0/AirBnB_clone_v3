@@ -21,7 +21,7 @@ classes = {"Amenity": Amenity, "City": City,
 
 
 class DBStorage:
-    """interaacts with the MySQL database"""
+    """interacts with the MySQL database"""
     __engine = None
     __session = None
 
@@ -76,20 +76,16 @@ class DBStorage:
         self.__session.remove()
 
     def get(self, cls, id):
-        """
-        Returns the object based on the class and ID
-        or None if is not found
-        """
-        objects = self.__session.query(classes[cls])
+        """return object based on class and ID or None if not found"""
+        objects = self.__session.query(cls)
         for obj in objects:
             if obj.id == id:
                 return obj
         return None
 
     def count(self, cls=None):
-        """
-        Returns the number of objects in storage matching the given class name.
-        If no name passed, returns the count of  objects in storage
+        """return number of objects in storage matching the given class name
+           or the count of  objects in storage if no class name passed
         """
         nobjects = 0
         for clss in classes:
