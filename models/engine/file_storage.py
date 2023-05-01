@@ -70,6 +70,8 @@ class FileStorage:
 
     def get(self, cls, id):
         """return object based on class name and ID, or None if not found"""
+        if type(cls) == str:
+            cls = classes[cls]
         key = "{}.{}".format(cls.__name__, id)
         if key in self.__objects.keys():
             return self.__objects[key]
@@ -80,7 +82,10 @@ class FileStorage:
         count of objects in storage if no class name passed
         """
         if cls:
+            if type(cls) == str:
+                cls = classes[cls]
             counter = 0
+
             for obj in self.__objects.values():
                 if obj.__class__ == cls:
                     counter += 1
