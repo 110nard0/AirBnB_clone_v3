@@ -9,14 +9,14 @@ from models import storage
 from models.state import state
 
 
-@app_views.route('/api/v1/states', methods=['GET'], strict_slashes=False)
+@app_views.route('/states', methods=['GET'], strict_slashes=False)
 def states():
     """Retrieves the list of all State objects"""
     data_state = storage.all(state)
     return jsonify([obj.to_dict() for obj in data_state.value()])
 
 
-@app_views.route('/api/v1/states/<int: state_id>', methods=['GET'])
+@app_views.route('/states/<int: state_id>', methods=['GET'])
 def state_by_id(state_id):
     """Retrieves a State object"""
     state = storage.get("state: ", state_id)
@@ -25,7 +25,7 @@ def state_by_id(state_id):
     return jsonify(state.to_dict())
 
 
-@app_views.route('/api/v1/states/<int: state_id>', methods=['DELETE'])
+@app_views.route('/states/<int: state_id>', methods=['DELETE'])
 def delete_state(state_id):
     """Delete state object"""
     state = storage.get("states", state_id)
@@ -36,7 +36,7 @@ def delete_state(state_id):
     return make_response(jsonify({}), 200)
 
 
-@app_views.route('/api/v1/states', methods=['POST'])
+@app_views.route('/states', methods=['POST'])
 def create_post():
     """Post new state oblect"""
     state_n = request.get_json(state)
