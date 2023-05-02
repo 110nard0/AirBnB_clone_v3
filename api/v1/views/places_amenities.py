@@ -3,7 +3,7 @@
 from api.v1.views import app_views
 from flask import jsonify, abort, make_response, request
 from models import storage
-from models.place import Place #, place_amenity
+from models.place import Place
 from models.amenity import Amenity
 
 
@@ -51,9 +51,7 @@ def post_place_amenities(place_id, amenity_id):
         return make_response(jsonify(amenity.to_dict()), 200)
 
     if type(storage).__name__ == 'DBStorage':
-        # amenity.place_amenities.append(place)
         place.amenities.append(amenity)
-        # place_amenity(place_id, amenity_id)
     else:
         place.amenity_id.append(amenity_id)
     return make_response(jsonify(amenity.to_dict()), 201)
