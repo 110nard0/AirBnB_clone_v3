@@ -3,7 +3,7 @@
 from api.v1.views import app_views
 from flask import jsonify, abort, make_response, request
 from models import storage
-from models.place import Place, place_amenity
+from models.place import Place #, place_amenity
 from models.amenity import Amenity
 
 
