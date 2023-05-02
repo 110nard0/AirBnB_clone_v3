@@ -71,8 +71,9 @@ class BaseModel:
         if "_password" in new_dict:
             new_dict["password"] = new_dict["_password"]
             new_dict.pop('_password', None)
-        if new_dict["class"] == "User" and not save_to_disk:
+        if new_dict["__class__"] == "User" and not save_to_disk:
             new_dict.pop("_password", None)
+            new_dict.pop("password", None)
         return new_dict
 
     def delete(self):
