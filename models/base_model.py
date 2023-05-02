@@ -72,7 +72,6 @@ class BaseModel:
             new_dict["password"] = new_dict["_password"]
             new_dict.pop('_password', None)
         if new_dict["class"] == "User" and not save_to_disk:
-            new_dict.pop("password", None)
             new_dict.pop("_password", None)
         return new_dict
 
