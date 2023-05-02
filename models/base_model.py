@@ -68,8 +68,6 @@ class BaseModel:
             new_dict["updated_at"] = new_dict["updated_at"].strftime(time)
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
-        if new_dict["__class__"] == "User" and not save_to_disk:
-            new_dict.pop("password", None)
         return new_dict
 
     def delete(self):
