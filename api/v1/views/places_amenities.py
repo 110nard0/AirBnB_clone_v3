@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""View for Place and Amenity objects link that handles default API actions
-"""
+""" View for Place and Amenity objects that handles default API actions """
 from api.v1.views import app_views
 from flask import jsonify, abort, make_response, request
 from models import storage
