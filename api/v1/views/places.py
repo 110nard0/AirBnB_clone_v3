@@ -90,8 +90,7 @@ def put_place(place_id):
                  strict_slashes=False)
 def places_search():
     """
-    Retrieves all Place objects depending of
-    the JSON in the body of the request
+    Retrieves all Place objects depending on the JSON in the request body
     """
     body_r = request.get_json()
     if body_r is None:
