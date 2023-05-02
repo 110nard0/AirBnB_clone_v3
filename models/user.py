@@ -36,5 +36,4 @@ class User(BaseModel, Base):
 
     @password.setter
     def password(self, psswd):
-        salt = self.id
-        self._password = hashlib.md5((psswd + salt).encode()).hexdigest()
+        self._password = hashlib.md5(psswd.encode()).hexdigest()
